@@ -1,0 +1,35 @@
+@import url("../../../index.css");
+
+.userInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: var(--padding-stardard);
+}
+
+.userInfo__user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--gap-stardard);
+
+    img {
+        width: 40px;
+        height: 40px;
+
+        border-radius: 50%;
+        object-fit: cover;
+    }
+}
+
+.userInfo__icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--gap-stardard);
+    
+    > * {
+        cursor: pointer;
+    }
+}

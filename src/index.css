@@ -1,0 +1,52 @@
+:root {
+  --primary-color: rgba(13, 18, 26, 0.534);
+  --secondary-color: rgba(255, 255, 255, 0.125);
+  --terceary-color: rgba(0, 0, 0, 0.2);
+  /* --terceary-color: rgba(92, 97, 105, 0.5); */
+
+  --logout-button: rgba(92, 129, 197, 0.8);
+  --logout-button-hover: rgb(78, 105, 192);
+
+  --block-user-button: rgb(243, 99, 99);
+  --block-user-button-text: rgba(236, 104, 104, 0.8);
+  --block-user-button-hover: rgba(192, 78, 78);
+
+  --gap-stardard: 15px;
+  --padding-stardard: 20px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-image: url("/public/background.jpg");
+  background-size: auto;
+  background-position: center;
+
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 100vh;
+}
+
+.container {
+  overflow: hidden;
+  
+  width: 90vw;
+  height: 90vh;
+
+  display: flex;
+
+  background-color: var(--primary-color);
+  backdrop-filter: blur(19px) saturate(180%);
+
+  border-radius: 12px;
+  border: 2px solid var(--secondary-color);
+}

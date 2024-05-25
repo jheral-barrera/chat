@@ -1,0 +1,96 @@
+@import url('../../../index.css');
+
+.addUser {
+  width: max-content;
+  height: max-content;
+
+  padding: 30px;
+  margin: auto;
+
+  background-color: rgba(50, 51, 54, 0.7);
+
+  backdrop-filter: blur(10px) saturate(180%);
+
+  border-radius: 10px;
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+
+  form {
+    display: flex;
+    gap: var(--gap-stardard);
+
+    input {
+        padding: 15px var(--padding-stardard);
+        
+        border-radius: 10px;
+        border: none;
+        outline: none;
+    }
+
+    button {
+        padding: 15px var(--padding-stardard);
+
+        border-radius: 10px;
+        border: 1px solid var(--logout-button-hover);
+
+        color: var(--logout-button-hover);
+        background-color: transparent;
+
+        transition: all 0.2s ease-in-out;
+
+        cursor: pointer;
+
+        &:hover {
+            background-color: var(--logout-button-hover);
+            color: white;
+
+            border: 1px solid var(--logout-button-hover);
+        }
+    }
+  }
+
+  .addUser__user {
+    margin-top: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .addUser__user__detail {
+        display: flex;
+        align-items: center;
+        gap: var(--gap-stardard);
+
+        img {
+            width: 50px;
+            height: 50px;
+
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    }
+
+    button {
+        padding: 15px var(--padding-stardard);
+
+        border-radius: 10px;
+        border: none;
+
+        color: white;
+        background-color: var(--logout-button);
+
+        transition: all 0.2s ease-in-out;
+
+        cursor: pointer;
+
+        &:hover {
+            background-color: var(--logout-button-hover);
+        }
+    }
+  }
+}
+
