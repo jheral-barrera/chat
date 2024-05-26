@@ -20,6 +20,8 @@ function App() {
     }
   }, [ fetchUserData ] )
 
+  // console.log( user );
+
   if ( isLoading ) return <Loader />;
 
   return (
