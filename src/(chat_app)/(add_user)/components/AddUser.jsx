@@ -1,4 +1,4 @@
-import { imgAvatarPath } from '../../../types'
+import { userPhotoPath } from '../../../types'
 import '../styles/addUser.css'
 
 export const AddUser = () => {
@@ -11,7 +11,7 @@ export const AddUser = () => {
 
       <div className="addUser__user">
         <div className="addUser__user__detail">
-          <img src={ imgAvatarPath } alt="" />
+          <img src={ userPhotoPath } alt="" />
           <span>Jheral Barrera</span>
         </div>
 

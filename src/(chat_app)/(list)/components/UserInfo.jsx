@@ -1,14 +1,17 @@
 import { EllipsisHorizontalCircleIcon, PencilSquareIcon, UserCircleIcon, VideoCameraIcon } from '@heroicons/react/24/outline'
 import '../styles/userInfo.css'
-import { iconSize, imgAvatarPath } from '../../../types'
+import { iconSize, userPhotoPath } from '../../../types'
+import { authStore } from '../../../(zustand)/authStore';
 
 export const UserInfo = () => {
+  const { user } = authStore();
+
   return (
     <div className='userInfo'>
 
       <div className="userInfo__user">
-        <img src={ imgAvatarPath } alt='avatar' />
-        <h3>Jheral Barrera</h3>
+        <img src={ user?.photoURL || userPhotoPath  } alt='avatar' />
+        <h3>{ user?.displayName }</h3>
       </div>
 
       <div className="userInfo__icons">

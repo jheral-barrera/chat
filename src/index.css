@@ -6,6 +6,7 @@
 
   --logout-button: rgba(92, 129, 197, 0.8);
   --logout-button-hover: rgb(78, 105, 192);
+  --logout-button-disabled: rgba(78, 105, 192, 0.527);
 
   --block-user-button: rgb(243, 99, 99);
   --block-user-button-text: rgba(236, 104, 104, 0.8);

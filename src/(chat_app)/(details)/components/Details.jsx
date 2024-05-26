@@ -1,14 +1,18 @@
 import { ArrowDownCircleIcon, ArrowDownTrayIcon, ArrowUpCircleIcon } from '@heroicons/react/24/outline'
-import { iconSize, imgAvatarPath } from '../../../types'
+import { iconSize, userPhotoPath } from '../../../types'
 import '../styles/details.css'
+import { authStore } from '../../../(zustand)/authStore';
 
 export const Details = () => {
+
+  const { user, authenticated, logoutUser } = authStore();
+
   return (
     <div className='details'>
       
       <div className='details__user'>
-        <img src={ imgAvatarPath } alt='avatar' />
-        <h2>Jheral Barrera</h2>
+        <img src={ user?.photoURL || userPhotoPath } alt='avatar' />
+        <h2>{ user?.displayName }</h2>
         <p>Lorem ipsum dolor sit amet</p>
       </div>
 
@@ -98,7 +102,7 @@ export const Details = () => {
       </div>
 
       <div className="details__logout">
-        <button>Logout</button>
+        <button onClick={ logoutUser }>Logout</button>
       </div>
     </div>
   )

@@ -19,6 +19,7 @@
         align-items: center;
         gap: var(--gap-stardard);
 
+
         form {
             display: flex;
             flex-direction: column;
@@ -76,6 +77,11 @@
                 cursor: pointer;
                 &:hover {
                     background-color: var(--logout-button-hover);
+                }
+
+                &:disabled {
+                    background-color: var(--logout-color-disabled);
+                    cursor: not-allowed;
                 }
             }
         }

@@ -35,7 +35,7 @@
     }
 
     .details__options {
-        flex: 1;
+        /* flex: 1; */
 
         padding: var(--padding-stardard);
 
@@ -71,7 +71,7 @@
 
                 overflow-y: auto;
 
-                max-height: 300px;
+                max-height: 278.5px;
 
                 .details__option__photos__list__item {
                     margin-top: 15px;
@@ -105,7 +105,7 @@
         }
         
         button  {
-            padding: 13px 20px;
+            padding: 10px 20px;
     
             background-color: transparent;
             /* color: var(--block-user-button-text); */
@@ -121,13 +121,13 @@
             &:hover {
                 background-color: var(--block-user-button-hover);
                 color: white;
-                border: none;
+                border: 1px solid var(--block-user-button-hover);
             }
         }
     }
 
     .details__logout {
-        padding: 25.5px var(--padding-stardard);
+        padding: 25px var(--padding-stardard);
         margin-top: auto;
 
         display: flex;

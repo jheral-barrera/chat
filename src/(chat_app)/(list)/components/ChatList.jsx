@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-import { MagnifyingGlassIcon, MinusIcon, PlusIcon, UserCircleIcon } from '@heroicons/react/24/outline'
+import { MagnifyingGlassIcon, MinusIcon, PlusIcon } from '@heroicons/react/24/outline'
 import '../styles/chatList.css'
 
-import { iconSize, imgAvatarPath } from '../../../types'
+import { iconSize, userPhotoPath } from '../../../types'
 import { AddUser } from '../../(add_user)/components/AddUser';
 
 export const ChatList = () => {
@@ -30,7 +30,7 @@ export const ChatList = () => {
       </div>
 
       <div className='chatList__chat'>
-        <img src={ imgAvatarPath } alt='avatar' />
+        <img src={ userPhotoPath } alt='avatar' />
         <div className='chatList__chat__info'>
           <strong>Jheral Barrera</strong>
           <p>Hola, ¿cómo estás?</p>
@@ -38,7 +38,7 @@ export const ChatList = () => {
       </div>
 
       <div className='chatList__chat'>
-        <img src={ imgAvatarPath } alt='avatar' />
+        <img src={ userPhotoPath } alt='avatar' />
         <div className='chatList__chat__info'>
           <strong>Jheral Barrera</strong>
           <p>Hola, ¿cómo estás?</p>
@@ -46,7 +46,7 @@ export const ChatList = () => {
       </div>
 
       <div className='chatList__chat'>
-        <img src={ imgAvatarPath } alt='avatar' />
+        <img src={ userPhotoPath } alt='avatar' />
         <div className='chatList__chat__info'>
           <strong>Jheral Barrera</strong>
           <p>Hola, ¿cómo estás?</p>
@@ -54,7 +54,7 @@ export const ChatList = () => {
       </div>
 
       <div className='chatList__chat'>
-        <img src={ imgAvatarPath } alt='avatar' />
+        <img src={ userPhotoPath } alt='avatar' />
         <div className='chatList__chat__info'>
           <strong>Jheral Barrera</strong>
           <p>Hola, ¿cómo estás?</p>
@@ -62,7 +62,7 @@ export const ChatList = () => {
       </div>
 
       <div className='chatList__chat'>
-        <img src={ imgAvatarPath } alt='avatar' />
+        <img src={ userPhotoPath } alt='avatar' />
         <div className='chatList__chat__info'>
           <strong>Jheral Barrera</strong>
           <p>Hola, ¿cómo estás?</p>
@@ -70,7 +70,7 @@ export const ChatList = () => {
       </div>
 
       <div className='chatList__chat'>
-        <img src={ imgAvatarPath } alt='avatar' />
+        <img src={ userPhotoPath } alt='avatar' />
         <div className='chatList__chat__info'>
           <strong>Jheral Barrera</strong>
           <p>Hola, ¿cómo estás?</p>
@@ -78,7 +78,7 @@ export const ChatList = () => {
       </div>
 
       <div className='chatList__chat'>
-        <img src={ imgAvatarPath } alt='avatar' />
+        <img src={ userPhotoPath } alt='avatar' />
         <div className='chatList__chat__info'>
           <strong>Jheral Barrera</strong>
           <p>Hola, ¿cómo estás?</p>
@@ -86,7 +86,7 @@ export const ChatList = () => {
       </div>
 
       <div className='chatList__chat'>
-        <img src={ imgAvatarPath } alt='avatar' />
+        <img src={ userPhotoPath } alt='avatar' />
         <div className='chatList__chat__info'>
           <strong>Jheral Barrera</strong>
           <p>Hola, ¿cómo estás?</p>
