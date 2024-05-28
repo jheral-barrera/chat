@@ -1,11 +1,11 @@
 import { ArrowDownCircleIcon, ArrowDownTrayIcon, ArrowUpCircleIcon } from '@heroicons/react/24/outline'
 import { iconSize, userPhotoPath } from '../../../types'
 import '../styles/details.css'
-import { authStore } from '../../../(zustand)/authStore';
+import { authStore, chatStore } from '../../../(zustand)';
 
 export const Details = () => {
-
-  const { user, authenticated, logoutUser } = authStore();
+  const { logoutUser } = authStore();
+  const { user } = chatStore();
 
   return (
     <div className='details'>

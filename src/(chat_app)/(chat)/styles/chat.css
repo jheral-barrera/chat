@@ -149,9 +149,17 @@
             align-items: center;
             gap: var(--gap-stardard);
 
+
             > * {
                 cursor: pointer;
             }
+        }
+        
+        form {
+            display: flex;
+            gap: var(--gap-stardard);
+            
+            width: 100%;
         }
 
         .chat__bottom__input {
@@ -200,6 +208,11 @@
         .chat__bottom__send {
             display: flex;
             align-items: center;
+
+            background: none;
+            border: none;
+
+            color: white;
 
             > * {
                 cursor: pointer;

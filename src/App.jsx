@@ -4,7 +4,7 @@ import { Notification } from "./(notification)/Notification";
 import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { FirebaseAuth } from "./(services)/firebase";
-import { authStore } from "./(zustand)/authStore";
+import { authStore } from "./(zustand)";
 import { Loader } from "./(ui)/components/Loader";
 
 function App() {
@@ -19,8 +19,6 @@ function App() {
         unSub();
     }
   }, [ fetchUserData ] )
-
-  // console.log( user );
 
   if ( isLoading ) return <Loader />;
 

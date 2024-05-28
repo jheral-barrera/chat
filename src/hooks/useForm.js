@@ -16,11 +16,19 @@ export const useForm = ({ initialState = {} }) => {
         setFormState( initialState );
     }
 
+    const handleEmojiClick = ( emojiValue ) => {
+        setFormState({
+            ...formState,
+            text: formState.text + emojiValue.emoji
+        })
+    }
+
     return {
         ...formState,
         formState,
         handleInputForm,
-        handleResetForm
+        handleResetForm,
+        handleEmojiClick
     }
 }
 

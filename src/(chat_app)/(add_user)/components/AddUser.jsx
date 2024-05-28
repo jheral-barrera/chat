@@ -1,12 +1,16 @@
 import { useState } from 'react';
-import { useForm } from '../../../hooks/useForm';
-import { userPhotoPath } from '../../../types'
-import '../styles/addUser.css'
+import { FirebaseDB } from '../../../(services)/firebase/firebase';
+import { arrayUnion, collection, doc, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore';
+import { authStore } from '../../../(zustand)/authStore';
 import { startSearchUser } from '../../../helpers/startSearchUser';
-import { set } from 'firebase/database';
+import { useForm } from '../../../hooks/useForm';
+
+import '../styles/addUser.css'
 
 export const AddUser = () => {
   const { userName, formState, handleInputForm, handleResetForm } = useForm( { initialState: { userName: '' } } );
+
+  const { user: currentUser } = authStore();
 
   const [ user, setUser ] = useState( null );
 
@@ -17,6 +21,47 @@ export const AddUser = () => {
     setUser( userSearched );
 
     handleResetForm();
+  }
+  
+  console.log( user );
+
+  const onClickAddUser = async () => {
+
+    const chatsCollectionRef = collection( FirebaseDB, `chats` );
+    const userChatsCollectionRef = collection( FirebaseDB, `users_chats` );
+
+    try {
+
+      const newChatCollectionRef = doc( chatsCollectionRef );
+
+      await setDoc( newChatCollectionRef, {
+        createdAt: serverTimestamp(),
+        messages: []
+      })
+
+      await updateDoc( doc( userChatsCollectionRef, user?.uid ), {
+        chats: arrayUnion({
+          chatId: newChatCollectionRef.id,
+          lastMessage: '',
+          recieverId: currentUser?.uid,
+          updatedAt: Date.now(),
+        })
+      });
+
+      await updateDoc( doc( userChatsCollectionRef, currentUser?.uid ), {
+        chats: arrayUnion({
+          chatId: newChatCollectionRef.id,
+          lastMessage: '',
+          recieverId: user?.uid,
+          updatedAt: Date.now(),
+        })
+      });
+
+      console.log( newChatCollectionRef );
+
+    } catch ( error ) {
+      console.log( error );
+    }
   }
 
   return (
@@ -40,7 +85,7 @@ export const AddUser = () => {
               <span>{ user?.displayName }</span>
             </div>
     
-            <button>Add User</button>
+            <button onClick={ onClickAddUser }>Add User</button>
           </div>
         ) 
         
