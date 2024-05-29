@@ -72,8 +72,6 @@ export const ChatList = () => {
 
   }
 
-  console.log( chats[0] )
-
   return (
     <div className='chatList'>
 
@@ -94,16 +92,13 @@ export const ChatList = () => {
 
       </div>
 
-      {chats.map( chat => console.log( chat ) )}
-
       { 
         chats.map( ( chat ) => (
           <div 
             className='chatList__chat' 
             key={ chat.chatId }
             onClick={ () => onClickChat( chat ) }
-            // style={{ backgroundColor: chat.isSeen ? 'transparent' : 'rgba(0, 0, 0, 0.2)' }} // <--- arreglar esto
-            style={{ backgroundColor: chat?.isSeen ? "transparent" : "#5183fe", }} // <--- arreglar esto
+            style={{ backgroundColor: chat?.isSeen ? "transparent" : "rgba(255, 255, 255, 0.125)", borderRadius: "5px" }} // <--- arreglar esto
           >
             <img src={ chat.user?.photoURL || userPhotoPath } alt='avatar' />
             <div className='chatList__chat__info'>

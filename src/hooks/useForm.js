@@ -1,3 +1,4 @@
+import { set } from "firebase/database";
 import { useState } from "react";
 
 export const useForm = ({ initialState = {} }) => {
@@ -9,6 +10,17 @@ export const useForm = ({ initialState = {} }) => {
         setFormState({
             ...formState,
             [name]: value
+        })
+    }
+
+    const handleImageForm =  ({ target }) => {
+        if ( target.files.length === 0 ) return;
+        const value = target.files[0];
+
+        setFormState({
+            ...formState,
+            image: value,
+            imageUrl: URL.createObjectURL(value),
         })
     }
 
@@ -27,6 +39,7 @@ export const useForm = ({ initialState = {} }) => {
         ...formState,
         formState,
         handleInputForm,
+        handleImageForm,
         handleResetForm,
         handleEmojiClick
     }

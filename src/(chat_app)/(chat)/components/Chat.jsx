@@ -8,12 +8,14 @@ import { arrayUnion, doc, getDoc, onSnapshot, updateDoc } from 'firebase/firesto
 import { FirebaseDB } from '../../../(services)/firebase/firebase'
 import { authStore, chatStore } from '../../../(zustand)'
 import { useForm } from '../../../hooks/useForm'
+import { fireStoreUpload } from '../../../helpers/fireStoreUpload'
+import { set } from 'firebase/database'
 
 export const Chat = () => {
   const [openEmoji, setOpenEmoji] = useState(false);
   const [ chat, setChat ] = useState( null );
 
-  const { text, formState, handleInputForm, handleResetForm, handleEmojiClick } = useForm({ initialState: { text: '' } });
+  const { text, image, imageUrl: imageURL, formState, handleInputForm, handleImageForm, handleResetForm, handleEmojiClick } = useForm({ initialState: { text: '', image: null, url: '' } });
 
   const { user: currentUser } = authStore();
   const { chatId, user } = chatStore();
@@ -42,13 +44,20 @@ export const Chat = () => {
     event.preventDefault();
     if ( text === '' ) return;
 
+    let imageUrl = null;
+
     try {
+
+      if ( image ) {
+        imageUrl = await fireStoreUpload( image );
+      }
 
       await updateDoc( doc( FirebaseDB, `chats/${ chatId }`), {
         messages: arrayUnion({
           senderId: currentUser?.uid,
           text,
-          createdAt: new Date()
+          createdAt: new Date(),
+          ...( imageUrl && { img: imageUrl } ),
         })
       } );
 
@@ -109,33 +118,43 @@ export const Chat = () => {
 
         {
           chat?.messages.map( ( message ) => (
-            <div className='chat__middle__message emiter' key={ message?.createdAt }>
+            <div className={ message.senderId === currentUser?.uid ? 'chat__middle__message emiter' : 'chat__middle__message' } key={ message?.createdAt }>
+              {/* { message?.img && <img src={ message.img } alt='image' /> } */}
 
               <div className='chat__middle__message__info emiter__info'>
+                {message.img && <img src={message.img} alt="" />}
                 <p>{ message.text }</p>
                 {/* <strong>2 min ago</strong> */}
               </div>
             </div>
-    
-            // <div className='chat__middle__message reciever'>
-            //   <img src={ userPhotoPath } alt='avatar' />
-    
-            //   <div className='chat__middle__message__info reciever__info'>
-            //     <img src='https://cdn.pixabay.com/photo/2012/08/27/14/19/mountains-55067_640.png' alt='image sended' />
-            //     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia, ratione perferendis possimus nobis saepe id aliquam sint magni nihil eveniet sapiente at similique asperiores illum unde consequuntur. Quaerat, cupiditate! Dolores?</p>
-            //     <strong>2 min ago</strong>
-            //   </div>
-            // </div>
-  
           ) )
         }
-
+        {
+          imageURL &&  (
+            <div className='chat__middle__message emiter'>
+              <div className='chat__middle__message__info emiter__info'>
+                <img src={ imageURL } alt='image' />
+              </div>
+            </div>
+            
+          )
+        }
+        <div ref={ endChatRef }></div>
       </div>
       
       <div className='chat__bottom'>
 
         <div className='chat__bottom__icons'>
-          <PhotoIcon height={ iconSize } width={ iconSize } />
+          <label htmlFor='file'>
+            <PhotoIcon height={ iconSize } width={ iconSize } />
+          </label>
+          <input 
+            type='file' 
+            id='file' 
+            accept="image/jpeg, image/png, image/gif"
+            style={{ display: 'none' }} 
+            onChange={ handleImageForm } 
+          />
           <CameraIcon height={ iconSize } width={ iconSize } />
           <MicrophoneIcon height={ iconSize } width={ iconSize } />
         </div>
@@ -165,10 +184,6 @@ export const Chat = () => {
           >
             <PaperAirplaneIcon height={ iconSize } width={ iconSize } />
           </button>
-{/* 
-          <div className='chat__bottom__send' onClick={ () => buttonSendRef.current.click() }>
-            <PaperAirplaneIcon height={ iconSize } width={ iconSize } />
-          </div> */}
 
         </form>
       </div>
